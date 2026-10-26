@@ -15,6 +15,8 @@
     kicker: 'AI-ASSISTED PCB DESIGN & AUTOMATION',
     organization: 'Semiconductor Device and System Laboratory',
     organizationShort: 'SDSL',
+    footerProjectEnglish: 'AI PCB Design Automation',
+    copyrightOrganization: 'Semiconductor Device and System Laboratory',
     copyrightYear: '2026',
     timezone: 'Asia/Seoul',
     projectStart: '2026-12-01',

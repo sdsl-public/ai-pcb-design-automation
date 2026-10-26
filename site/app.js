@@ -377,9 +377,9 @@
   for(const [selector,value] of [
     ['#brand-organization',config.organizationShort],
     ['#footer-organization',config.organizationShort],
-    ['#footer-project',config.title],
+    ['#footer-project',config.footerProjectEnglish||config.title],
     ['#footer-year',config.copyrightYear],
-    ['#footer-copyright-organization',config.organizationShort]
+    ['#footer-copyright-organization',config.copyrightOrganization||config.organization]
   ]){const el=$(selector);if(el)el.textContent=value||'';}
   const period=document.createElement('p');
   period.id='project-period';period.className='project-period';
