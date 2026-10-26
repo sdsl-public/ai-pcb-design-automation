@@ -1,5 +1,5 @@
 /* AI-assisted PCB design, verification and fabrication automation research.
-   Dates below are a provisional 12-month planning window. No secrets here. */
+   Project schedule: December 2026 through August 2027 (9 months). No secrets here. */
 (() => {
   'use strict';
   const host=window.location?.hostname || '';
@@ -16,8 +16,8 @@
     organizationShort: 'SDSL',
     copyrightYear: '2026',
     timezone: 'Asia/Seoul',
-    projectStart: '2026-11-01',
-    projectEnd: '2027-10-31',
+    projectStart: '2026-12-01',
+    projectEnd: '2027-08-31',
     targetDate: null,
     projectUrl: null,
     phases: [
