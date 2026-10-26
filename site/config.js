@@ -18,6 +18,8 @@
     footerProjectEnglish: 'AI PCB Design Automation',
     copyrightOrganization: 'Semiconductor Device and System Laboratory',
     copyrightYear: '2026',
+    // Public team members: {name: 'Name', role: 'Role'}. Leave empty until confirmed.
+    projectTeam: [],
     timezone: 'Asia/Seoul',
     projectStart: '2026-12-01',
     projectEnd: '2027-08-31',
