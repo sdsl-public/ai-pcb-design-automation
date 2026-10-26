@@ -16,6 +16,14 @@ assert.equal(c.reportTitle,'AI PCB Design Automation');
 assert.equal(c.projectStart,'2026-12-01');
 assert.equal(c.projectEnd,'2027-08-31');
 assert.equal(c.organizationShort,'SDSL');
+assert.equal(c.organization,'Semiconductor Device and System Laboratory');
+assert.ok(index.includes('<span id="footer-organization">SDSL</span>'));
+assert.ok(index.includes('<span id="footer-copyright-organization">SDSL</span>'));
+const app=fs.readFileSync('site/app.js','utf8');
+assert.ok(app.includes("['#footer-organization',config.organizationShort]"));
+assert.ok(app.includes("['#footer-copyright-organization',config.organizationShort]"));
+assert.ok(!app.includes("['#footer-organization',config.organization]"));
+
 assert.equal(c.timezone,'Asia/Seoul');
 const phases=c.phases.filter(p=>p.id!=='00');
 assert.equal(phases.length,6);
