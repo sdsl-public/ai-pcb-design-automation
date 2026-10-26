@@ -8,6 +8,7 @@
   window.DASHBOARD_CONFIG=Object.freeze({
     repository: owner && slug ? `${owner}/${slug}` : 'sdsl-public/ai-pcb-design-automation',
     title: 'AI 기반 PCB 설계·검증·제작 자동화 연구',
+    reportTitle: 'AI PCB Design Automation',
     titlePrimary: 'AI 기반 PCB',
     titleAccent: '설계·검증·제작 자동화',
     subtitle: 'AI 기반 회로·PCB 설계부터 자동 검증, 제작 연계, 실물 평가까지',
