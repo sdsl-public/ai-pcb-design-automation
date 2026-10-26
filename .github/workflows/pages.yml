@@ -1,0 +1,137 @@
+name: Publish public dashboard
+
+on:
+  push:
+    branches: [main]
+  issues:
+    types: [opened, edited, closed, reopened, labeled, unlabeled, assigned, unassigned, deleted, transferred, milestoned, demilestoned]
+  milestone:
+    types: [edited, deleted]
+  workflow_dispatch:
+  schedule:
+    - cron: '17 */6 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+      issues: read
+    steps:
+      - name: Check out the trusted default branch
+        uses: actions/checkout@v6
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: false
+      - name: Test the exporter, calendar and deliverable assets
+        run: |
+          python3 -m unittest discover -s tests -v
+          node --check site/app.js
+          node tests/test_report_refresh.js
+          node tests/test_summary_layout.js
+          node --check site/config.js
+          node --check site/deliverables.js
+      - name: Export approved public Issues
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: python3 scripts/export_issues.py --output site/data.js
+      - name: Build only public site assets
+        run: python3 scripts/build.py
+      - name: Upload the public site
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
+      - name: Verify public page and all six deliverable images
+        env:
+          PAGE_URL: ${{ steps.deployment.outputs.page_url }}
+        run: |
+          python3 - <<'PY'
+          import hashlib, json, os, time, urllib.request
+          from urllib.parse import quote
+          base = os.environ['PAGE_URL'].rstrip('/') + '/'
+          expected = {
+              '': 'app.js?v=summary-compact-rows-1',
+              'styles.css': 'font-size:18px',
+              'theme.css': 'Urbanist',
+              'app.js': 'projectEndExclusive',
+              'config.js': 'window.DASHBOARD_CONFIG',
+              'data.js': 'github-issues',
+              'report-data.js': 'window.DASHBOARD_REPORTS = ',
+              'report-data.json': '"reports":',
+              'weekly_report_template.html': 'Weekly Report',
+              'deliverables.js': 'phase-deliverable',
+              'deliverables.css': 'width:44px',
+          }
+          images = {
+              '01': 'be05748a6f7b1dbbcf585fc7c63a32642c5ab7bbc6ec22b217f721f8e938aa02',
+              '02': '571986d0020285cc2deef0d140031213be88c968c2e738c06dd244786fdafded',
+              '03': '55c7b096c6afc7901bd23727393cac093185b5df9250ff86e71b4e020500a85a',
+              '04': 'e1dc2d00eaad66302d0d580fd8215649dcd03c59adbb87fecf073e6a9b885b5e',
+              '05': 'af1c90fcf5e737a1e5ae5cbc700fa97b2c9c1e50abd1301ae238a691ec63043d',
+              '06': 'a91f9e9e4ee82afa7ecf2fc02b61c8d916324fc30f93961b0524bc70bc4380de',
+          }
+          checks = [(name, marker, False) for name, marker in expected.items()]
+          checks += [(f'assets/timeline-icons/{phase}.webp', digest, True) for phase, digest in images.items()]
+          for name, target, binary in checks:
+              for attempt in range(12):
+                  try:
+                      url = base + quote(name, safe='/') + '?verify=' + os.environ['GITHUB_RUN_ID']
+                      req = urllib.request.Request(url, headers={'Cache-Control': 'no-cache'})
+                      with urllib.request.urlopen(req, timeout=30) as response:
+                          body = response.read()
+                          valid = hashlib.sha256(body).hexdigest() == target if binary else target in body.decode('utf-8')
+                          if response.status != 200 or not valid:
+                              raise RuntimeError('Unexpected deployed content: ' + name)
+                      print('Verified HTTP 200 and ' + ('SHA-256: ' if binary else 'content: ') + (name or 'index.html'))
+                      break
+                  except Exception:
+                      if attempt == 11:
+                          raise
+                      time.sleep(5)
+          # Check live weekly report links without assuming a report exists in any month.
+          feed_url = base + 'report-data.json?verify=' + os.environ['GITHUB_RUN_ID']
+          req = urllib.request.Request(feed_url, headers={'Cache-Control': 'no-cache'})
+          with urllib.request.urlopen(req, timeout=30) as response:
+              reports = json.load(response)['reports']
+          if not isinstance(reports, list):
+              raise RuntimeError('Invalid reports feed')
+          for report in reports:
+              url = report.get('url')
+              if not isinstance(url, str) or not url.startswith(base + 'reports/weekly/'):
+                  raise RuntimeError('Untrusted report URL')
+              req = urllib.request.Request(url + '?verify=' + os.environ['GITHUB_RUN_ID'], headers={'Cache-Control': 'no-cache'})
+              with urllib.request.urlopen(req, timeout=30) as response:
+                  if response.status != 200 or "script-src 'none'" not in response.read().decode('utf-8'):
+                      raise RuntimeError('Missing or unsafe read-only report: ' + url)
+              print('Verified safe read-only report: ' + url)
+          print(f'Verified weekly report index with {len(reports)} report(s)')
+          with open(os.environ['GITHUB_STEP_SUMMARY'], 'a') as f:
+              f.write('## Dashboard deployed\n\n' + base + '\n\nHTML, styles, scripts, public Issue snapshot and all six approved icon hashes verified.\n')
+          PY

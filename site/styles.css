@@ -1,0 +1,344 @@
+/* Urbanist / Noto Sans KR. Keep the original Amplect-inspired theme unchanged. */
+@import url('./theme.css');
+
+.project-period{display:table;margin:18px auto 0;padding:8px 16px;border:1px solid #bde8a52e;border-radius:30px;color:#caddbe;font-size:12px;line-height:1.6;letter-spacing:.015em}
+.icon-button:disabled{opacity:.28;cursor:default}
+.gantt[data-scale=full] .gantt-month{justify-content:center;padding-left:5px;padding-right:5px;white-space:nowrap}
+.gantt[data-scale=full] .gantt-tick{font-variant-numeric:tabular-nums}
+.phase-bar strong{flex-shrink:0}
+
+/* Increase text, targets and spacing together; do not scale the entire page. */
+@media screen and (min-width:1024px){
+  :root{--muted:#b0baac}
+  body{font-size:16px;line-height:1.7}
+  .site-header,.page-shell,.site-footer{width:min(100%,1600px);padding-left:48px;padding-right:48px}
+  .brand-sub,.public-badge,.hero-kicker,.eyebrow{font-size:12px}
+  .hero-description{font-size:20px;line-height:1.8}
+  .hero-subtitle{font-size:16px;line-height:1.8}
+  .hero-anchor{font-size:15px}
+  .project-period{font-size:15px;padding:9px 20px}
+  .text-link,.github-link{font-size:14px}
+  .data-strip,.quiet-button,.demo-toggle{font-size:13px}
+  .data-strip{padding:18px 0;flex-wrap:wrap}
+  .data-strip-actions{margin-left:auto}
+  .demo-banner{font-size:14px;padding:15px 18px}
+  .demo-banner>div{flex-wrap:wrap;gap:4px 12px}
+  .demo-banner button{font-size:13px;padding:7px 14px}
+  .metric{padding:26px 28px}
+  .metric-top{font-size:15px}
+  .metric-number{font-size:44px}
+  .metric-number small{font-size:16px}
+  .metric-bottom{font-size:13px;line-height:1.8;align-items:flex-start}
+  .metric-top svg{width:18px;height:18px}
+  .section-top h2{font-size:30px}
+  .heading-tag{font-size:14px}
+  .button{font-size:15px;min-height:46px;padding:11px 20px}
+  .workspace-toolbar{flex-wrap:wrap;gap:18px 24px}
+  .view-switch{gap:26px}
+  .view-switch button{font-size:15px;padding:9px 0;gap:9px}
+  .view-switch svg{width:18px;height:18px}
+  .filter-row{gap:10px}
+  .search-box{height:43px;padding:9px 12px}
+  .search-box input{font-size:14px;width:130px}
+  .search-box svg{width:17px;height:17px}
+  .search-box kbd{font-size:12px}
+  select{font-size:14px;min-height:43px;max-width:180px;padding:8px 12px}
+  .timeline-controls{flex-wrap:wrap;padding:16px 0;gap:12px}
+  .range-controls>span{font-size:16px;min-width:181px;font-variant-numeric:tabular-nums}
+  .range-options{font-size:14px;gap:18px}
+  .icon-button{width:38px;height:38px}
+  .small-button{font-size:14px;padding:6px 15px}
+  .scale-switch button{font-size:14px;min-height:34px;padding:4px 15px}
+  .quiet-button svg,.demo-toggle svg{width:16px;height:16px}
+  .gantt{--label-w:250px;min-width:1240px}
+  .gantt-head{height:108px}
+  .gantt-label-header{font-size:14px;gap:8px;padding-right:16px}
+  .gantt-label-header span:last-child{font-size:10px}
+  .gantt-months,.gantt-month{height:48px}
+  .gantt-month{font-size:15px;justify-content:center;padding:0 5px;white-space:nowrap}
+  .gantt-ticks,.gantt-tick{height:34px}
+  .gantt-tick{font-size:12px;color:#b0bca6}
+  .today-head b{top:86px;font-size:10px;padding:1px 6px}
+  .gantt-row{min-height:112px}
+  .phase-cell{gap:12px;padding:25px 16px 25px 0}
+  .phase-number{font-size:14px;min-width:23px}
+  .phase-cell-title{gap:7px}
+  .phase-cell-title strong{font-size:18px;font-weight:500}
+  .phase-cell-title small{font-size:12px;color:#abb8a0;line-height:1.7;white-space:normal}
+  .phase-chevron{width:15px;height:15px}
+  .phase-bar{height:48px;top:31px;padding:0 13px;font-size:15px}
+  .phase-bar strong{font-size:13px}
+  .gantt-unscheduled{font-size:14px;color:#a4b09a}
+  .gantt-task-row{min-height:72px}
+  .task-cell{padding:15px 14px 15px 18px;gap:8px}
+  .task-cell strong{font-size:14px;line-height:1.6;white-space:normal;overflow-wrap:anywhere}
+  .task-number{font-size:11px}
+  .status-symbol svg{width:16px;height:16px}
+  .task-bar{font-size:13px;height:32px;top:20px;line-height:1.5}
+  .task-bar.milestone{top:27px;height:18px;width:18px!important;min-width:18px}
+  .task-empty-row,.gantt-bottom-note,.gantt-bottom-note button{font-size:14px}
+  .workspace-footer{font-size:12px;flex-wrap:wrap;gap:14px;line-height:1.8}
+  .legend{gap:20px;flex-wrap:wrap}
+  .legend-dot{width:7px;height:7px}
+  .task-table{font-size:15px;min-width:1140px}
+  .task-table th{font-size:13px;padding:17px 15px}
+  .task-table td{padding:20px 15px;line-height:1.7}
+  .table-task-link{font-size:16px;line-height:1.7}
+  .table-task-id{font-size:12px}
+  .status-chip{font-size:14px;gap:7px}
+  .status-chip svg{width:16px;height:16px}
+  .board{grid-template-columns:repeat(var(--columns),minmax(230px,1fr));min-width:1220px}
+  .board-title{font-size:16px}
+  .card-phase,.card-foot,.board-empty{font-size:12px}
+  .task-card{padding:18px}
+  .task-card strong{font-size:16px;line-height:1.7}
+  .avatar{width:30px;height:30px;font-size:11px}
+  .panel-heading h2{font-size:23px}
+  .panel-heading .eyebrow{font-size:11px}
+  .activity-item{padding:5px 0;flex-wrap:wrap}
+  .activity-item strong{font-size:14px;white-space:normal;line-height:1.4;min-width:0}
+  .activity-item span{font-size:12px;line-height:1.4}
+  .activity-empty,.workflow-panel p{font-size:14px}
+  .workflow-steps{font-size:14px;flex-wrap:wrap;gap:12px}
+  .workflow-steps b{font-size:13px}
+  .workflow-bottom{font-size:12px;flex-wrap:wrap;line-height:1.8}
+  .workflow-bottom .text-link{font-size:14px}
+  .public-notice{font-size:12px;align-items:flex-start;line-height:1.8}
+  .public-notice svg{margin-top:4px}
+  .site-footer{font-size:12px;flex-wrap:wrap}
+  .site-footer>span:nth-child(2){font-size:11px}
+  .empty-state h3{font-size:24px}
+  .empty-state p,.no-results{font-size:15px}
+  #task-dialog{width:610px;padding:34px}
+  .dialog-summary,.detail-grid dd,.detail-progress>div:first-child,.check-item{font-size:16px;line-height:1.8}
+  #dialog-title{font-size:32px}
+  .detail-grid dt,.detail-progress small,.dialog-updated{font-size:13px}
+  .phase-chip,.detail-demo-notice{font-size:14px}
+  .detail-checklist h3{font-size:16px}
+  .help-content p{font-size:15px;line-height:1.9}
+  .help-content h3{font-size:18px}
+  .help-warning{font-size:14px;line-height:1.9}
+  .toast{font-size:15px}
+}
+@media screen and (min-width:1024px) and (max-width:1200px){
+  .site-header,.page-shell,.site-footer{padding-left:32px;padding-right:32px}
+  .filter-row{margin-left:auto}
+  .range-options{margin-left:auto}
+  .metric{padding:23px 18px}
+  .panel-heading{align-items:flex-start;flex-wrap:wrap}
+}
+@media screen and (max-width:480px){
+  .project-period{font-size:11px;padding:7px 11px;letter-spacing:0}
+  .range-options{gap:9px;flex-wrap:wrap}
+  .scale-switch button{padding-left:9px;padding-right:9px}
+}
+
+/* Three equal dashboard columns: summary | latest tasks | latest reports. */
+.workspace + .lower-grid{margin-top:36px}
+.lower-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px}
+.lower-grid > .updates-panel{min-width:0}
+.lower-grid .panel-heading{flex-wrap:wrap;align-content:flex-start;gap:5px 12px}
+/* Each summary metric occupies just one horizontal row. */
+.summary-list{display:flex;flex-direction:column;min-width:0}
+.summary-stat{
+  display:grid;
+  grid-template-columns:78px max-content minmax(0,1fr) 16px;
+  align-items:center;
+  column-gap:10px;
+  min-width:0;
+  min-height:46px;
+  padding:7px 0;
+  border-bottom:1px solid #ffffff09;
+}
+.summary-stat-label{min-width:0;font-size:13px;color:var(--muted);white-space:nowrap}
+.summary-stat-value{
+  white-space:nowrap;
+  font-size:27px;
+  font-weight:400;
+  line-height:1.15;
+  letter-spacing:-.045em;
+  font-variant-numeric:tabular-nums;
+}
+.summary-stat-value small{font-size:11px;margin-left:3px;font-weight:400;letter-spacing:0;color:var(--muted)}
+.summary-stat-note{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted);font-size:11px}
+.summary-stat-icon{display:flex;justify-content:flex-end;align-items:center;color:var(--muted)}
+.summary-stat-icon svg{width:14px;height:14px;opacity:.6}
+.summary-stat-warning{color:#e2b496}
+.reports-panel .activity-item{color:inherit;text-decoration:none;cursor:pointer}
+.reports-panel .activity-item:hover strong{color:var(--accent)}
+.reports-panel .activity-dot{background:var(--accent)}
+@media screen and (min-width:1024px){
+  .summary-stat-label{font-size:14px}
+  .summary-stat-note{font-size:12px}
+}
+@media screen and (min-width:761px) and (max-width:1023px){
+  .lower-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+  .summary-panel{grid-column:1/-1}
+}
+@media screen and (max-width:760px){
+  .workspace + .lower-grid{margin-top:28px}
+  .lower-grid{grid-template-columns:minmax(0,1fr);gap:28px}
+  .summary-stat{grid-template-columns:72px max-content minmax(0,1fr) 14px;column-gap:8px;min-height:42px;padding:6px 0}
+  .summary-stat-label{font-size:12px}
+  .summary-stat-value{font-size:24px}
+  .summary-stat-note{font-size:10px}
+  .summary-stat-icon svg{width:13px;height:13px}
+}
+@media screen and (max-width:480px){
+  .summary-stat{grid-template-columns:68px max-content minmax(0,1fr) 13px;column-gap:7px}
+  .summary-stat-label{font-size:11px}
+  .summary-stat-value{font-size:23px}
+  .summary-stat-value small{font-size:10px}
+}
+
+/* Dense roadmap: align labels and bars vertically with minimal whitespace. */
+/* Task row minimums include the two prior 1px-per-side padding reductions (4px total). */
+.gantt-row{min-height:58px}
+.phase-cell{padding-top:6px;padding-bottom:6px}
+.phase-cell-title{gap:2px}
+.phase-cell-title strong{line-height:1.24}
+.phase-cell-title small{line-height:1.24}
+.phase-bar{top:50%;height:30px;transform:translateY(-50%)}
+.gantt-task-row{min-height:36px}
+.task-cell{padding-top:3px;padding-bottom:3px}
+.task-cell strong{line-height:1.3}
+.task-bar{top:50%;height:23px;transform:translateY(-50%);border-radius:6px}
+.task-bar.milestone{top:50%;height:16px;transform:translateY(-50%) rotate(45deg)}
+@media screen and (min-width:1024px){
+  .gantt-row{min-height:60px}
+  .phase-cell{padding-top:6px;padding-bottom:6px}
+  .phase-bar{height:30px}
+  .gantt-task-row{min-height:38px}
+  .task-cell{padding-top:3px;padding-bottom:3px}
+  .task-bar{height:25px}
+}
+@media screen and (max-width:480px){
+  .gantt-row{min-height:54px}
+  .phase-cell{padding-top:5px;padding-bottom:5px}
+  .phase-bar{height:28px}
+  .gantt-task-row{min-height:34px}
+  .task-cell{padding-top:2px;padding-bottom:2px}
+  .task-bar{height:22px}
+}
+
+/* Timeline title, sync indicator and controls share a single compact row. */
+.timeline-header{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:nowrap;gap:20px;padding-bottom:16px;margin-bottom:18px;
+  border-bottom:1px solid var(--line);
+}
+.timeline-heading{flex:0 0 auto}
+.timeline-header h2{margin:0;line-height:1.3;white-space:nowrap}
+.timeline-header-controls{
+  display:flex;align-items:center;justify-content:flex-end;
+  flex:1 1 auto;min-width:0;gap:20px;
+}
+.timeline-sync-status{
+  display:flex;align-items:center;gap:8px;min-width:0;
+  color:var(--muted);font-size:12px;line-height:1.45;white-space:nowrap;
+}
+.timeline-sync-status .status-light{flex:0 0 auto}
+.timeline-sync-status > span:not(.status-light){
+  display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.timeline-refresh{display:inline-flex;align-items:center;gap:7px;flex:0 0 auto;white-space:nowrap}
+.timeline-header #new-issue{flex:0 0 auto;white-space:nowrap}
+@media screen and (min-width:1024px){
+  .timeline-header{gap:24px}
+  .timeline-header-controls{gap:24px}
+  .timeline-sync-status{font-size:13px}
+}
+@media screen and (max-width:760px){
+  .timeline-header{gap:9px;padding-bottom:12px;margin-bottom:16px}
+  .timeline-header h2{font-size:21px}
+  .timeline-header-controls{gap:8px}
+  .timeline-sync-status{flex:1 1 auto;font-size:10px;min-width:0}
+  .timeline-refresh{width:30px;height:34px;justify-content:center;gap:0;padding:0}
+  .timeline-refresh .refresh-label{display:none}
+  .timeline-header #new-issue{font-size:10px;min-height:34px;padding:7px 10px;gap:5px}
+  .timeline-header #new-issue [data-icon="arrow-up-right"]{display:none}
+}
+@media screen and (max-width:480px){
+  .timeline-header h2{font-size:20px}
+  .timeline-header-controls{gap:7px}
+  .timeline-sync-status{font-size:9px}
+  .timeline-header #new-issue{padding:7px 8px;font-size:10px}
+}
+
+/* Calendar guides: a subtle monthly midpoint and date labels near their ticks. */
+.grid-line.mid-month{border-left:1px dashed rgba(255,255,255,0.08)}
+.gantt-tick{justify-content:flex-start;padding-left:4px;padding-right:0;text-align:left}
+
+/* Approved modern status palette; shared by the legend and status indicators. */
+:root{
+  --status-planned:#9CA3AF;
+  --status-in-progress:#84CC16;
+  --status-review:#60A5FA;
+  --status-blocked:#FB923C;
+  --status-done:#34D399;
+  --status-done-border:#047857;
+}
+.planned{color:var(--status-planned)}
+.in-progress{color:var(--status-in-progress)}
+.review{color:var(--status-review)}
+.blocked{color:var(--status-blocked)}
+.done{color:var(--status-done)}
+.workspace-footer{justify-content:flex-start;padding:12px 0 10px}
+.workspace-footer .legend{
+  display:flex;align-items:center;flex-wrap:wrap;gap:12px 24px;
+  font-size:14px;font-weight:500;line-height:1.5;color:#D9DED8;
+}
+.workspace-footer .legend > span{
+  display:inline-flex;align-items:center;gap:8px;white-space:nowrap;
+}
+.workspace-footer .legend-dot{
+  display:inline-block;width:8px;height:8px;flex:0 0 8px;
+  border-radius:50%;background:currentColor;
+}
+.workspace-footer .legend-dot.done{
+  box-shadow:0 0 0 2px var(--status-done-border);
+}
+@media screen and (max-width:480px){
+  .workspace-footer .legend{column-gap:16px;row-gap:10px}
+}
+
+/* Compact recent activity rows on mobile; desktop has its 8px rule above. */
+@media screen and (max-width:760px){
+  .activity-item{padding-top:4px;padding-bottom:4px}
+}
+
+
+/* Identical task and report action buttons on desktop and mobile. */
+.timeline-header #new-issue,
+.timeline-header #new-report{
+  flex:0 0 auto;
+  white-space:nowrap;
+}
+@media screen and (max-width:760px){
+  .timeline-header #new-issue,
+  .timeline-header #new-report{
+    font-size:10px;
+    min-height:34px;
+    padding:7px 10px;
+    gap:5px;
+  }
+  /* Hide the entire icon wrapper; hiding only SVG leaves an empty flex item and gap. */
+  .timeline-header #new-issue [data-icon="arrow-up-right"],
+  .timeline-header #new-report [data-icon="arrow-up-right"]{display:none}
+  .timeline-header #new-issue,
+  .timeline-header #new-report{justify-content:center;text-align:center}
+}
+@media screen and (max-width:480px){
+  .timeline-header #new-issue,
+  .timeline-header #new-report{padding:7px 8px;font-size:10px}
+}
+
+/* The explicit HTML line break keeps both copyright lines separate without cached CSS. */
+.site-footer .copyright-notice{line-height:1.5;text-align:center}
+@media screen and (max-width:760px){
+  .site-footer .copyright-notice{
+    order:3;
+    width:100%;
+    text-align:center;
+  }
+}
