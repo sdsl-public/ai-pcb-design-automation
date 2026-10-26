@@ -39,8 +39,11 @@ assert.ok(report.includes("const reportName = \`${window.DASHBOARD_CONFIG?.repor
 assert.ok(report.includes('const filenameBase = \`${writtenAt}_${authorName}_Weekly_Report\`'));
 assert.ok(report.includes("{id:'author', label:'작성자'}"));
 // Simulate browser branding to verify the exact two-line heading and footer.
-const match=report.match(/<script data-project-metadata>([\\s\\S]*?)<\\/script>/);
-assert.ok(match,'project metadata script');
+const metaTag='<script data-project-metadata>';
+const segments=report.split(metaTag);
+assert.equal(segments.length,2,'project metadata script exists exactly once');
+const script=segments[1].split('</script>',1)[0];
+assert.ok(script.includes('const reportTitle=c.reportTitle'));
 const elements={
   '.kicker':{nodes:[],replaceChildren(...nodes){this.nodes=nodes;}},
   '.laboratory-footer':{textContent:''}
@@ -51,7 +54,7 @@ const simulatedDocument={
   createTextNode:text=>({type:'text',value:text}),
   createElement:tag=>({type:'element',tag})
 };
-vm.runInNewContext(match[1],{window:sandbox.window,document:simulatedDocument});
+vm.runInNewContext(script,{window:sandbox.window,document:simulatedDocument});
 assert.deepEqual(Array.from(elements['.kicker'].nodes,x=>x.type==='text'?x.value:x.tag),
   ['AI PCB Design Automation','br','Weekly Report']);
 assert.equal(elements['.laboratory-footer'].textContent,lab);
