@@ -18,6 +18,13 @@ assert.equal(c.projectEnd,'2027-08-31');
 assert.equal(c.organizationShort,'SDSL');
 assert.equal(c.organization,'Semiconductor Device and System Laboratory');
 assert.equal(c.footerProjectEnglish,'AI PCB Design Automation');
+assert.equal(c.projectTeam.length,0);
+assert.ok(index.includes('id="project-team-button"'));
+assert.ok(index.includes('id="project-team-dialog"'));
+assert.ok(index.includes('project-team.js?v=1'));
+assert.ok(css.includes('grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)'));
+assert.ok(fs.existsSync('site/project-team.js'));
+
 assert.equal(c.copyrightOrganization,'Semiconductor Device and System Laboratory');
 assert.ok(index.includes('<span id="footer-organization">SDSL</span>'));
 assert.ok(index.includes('<span id="footer-project">AI PCB Design Automation</span>'));
@@ -39,7 +46,7 @@ phases.forEach((phase,i)=>{
   assert.ok(phase.en && phase.title && phase.deliverable);
   assert.ok(issue.includes(phase.id+' · '+phase.title),'Issue form phase mismatch: '+phase.id);
 });
-assert.ok(index.includes('styles.css?v=ai-pcb-project-1'));
+assert.ok(index.includes('styles.css?v=ai-pcb-project-team-1'));
 assert.ok(index.includes('id="hero-primary">AI 기반 PCB'));
 assert.ok(css.includes('#project-title{font-size:clamp(36px,5.2vw,80px)'));
 assert.ok(!fs.existsSync('reports/weekly/2026-10/2026.10.21_14-57_(KST)_Min-Hwi_Kim_Weekly_Report.html'));
