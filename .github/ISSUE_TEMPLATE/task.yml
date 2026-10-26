@@ -1,5 +1,5 @@
-name: 프로젝트 업무
-description: 연구 단계, 일정, 상태와 공개 요약을 등록합니다.
+name: AI PCB 자동화 연구 업무
+description: AI PCB 설계·검증·제작 자동화 연구의 업무와 결과를 기록합니다.
 title: "[TASK] "
 body:
   - type: markdown
@@ -14,12 +14,12 @@ body:
     attributes:
       label: 연구 단계
       options:
-        - 01 · 기획·목표 설정
-        - 02 · 자료조사·요구사항
-        - 03 · 개발·실험 설계
-        - 04 · 구현·검증
-        - 05 · 평가·분석
-        - 06 · 성과·마무리
+        - 01 · 연구 기획·사양 정의
+        - 02 · AI 회로·부품 설계
+        - 03 · PCB 배치·배선 자동화
+        - 04 · 회로·레이아웃 검증
+        - 05 · 제작 데이터·발주 연계
+        - 06 · 시제품 평가·최적화
         - 00 · 미분류
     validations:
       required: true
@@ -75,9 +75,9 @@ body:
       label: 체크리스트
       description: 완료한 항목은 [x]로 표시합니다.
       value: |
-        - [ ] 입력 자료 및 요구사항 정리
-        - [ ] 업무 수행
-        - [ ] 결과 검토
+        - [ ] 입력 사양·설계 규칙·라이브러리 확인
+        - [ ] 연구·개발 및 결과 기록
+        - [ ] ERC/DRC 등 독립 검증 및 리뷰
   - type: checkboxes
     id: public-check
     attributes:

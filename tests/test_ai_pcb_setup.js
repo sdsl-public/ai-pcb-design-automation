@@ -1,0 +1,30 @@
+/* Project-specific configuration and issue form regression. */
+'use strict';
+const fs=require('node:fs');
+const vm=require('node:vm');
+const assert=require('node:assert/strict');
+const config=fs.readFileSync('site/config.js','utf8');
+const issue=fs.readFileSync('.github/ISSUE_TEMPLATE/task.yml','utf8');
+const index=fs.readFileSync('site/index.html','utf8');
+const css=fs.readFileSync('site/styles.css','utf8');
+const sandbox={window:{location:{hostname:'sdsl-public.github.io',pathname:'/ai-pcb-design-automation/'}}};
+vm.runInNewContext(config,sandbox);
+const c=sandbox.window.DASHBOARD_CONFIG;
+assert.equal(c.repository,'sdsl-public/ai-pcb-design-automation');
+assert.equal(c.title,'AI 기반 PCB 설계·검증·제작 자동화 연구');
+assert.equal(c.projectStart,'2026-11-01');
+assert.equal(c.projectEnd,'2027-10-31');
+assert.equal(c.organizationShort,'SDSL');
+assert.equal(c.timezone,'Asia/Seoul');
+const phases=c.phases.filter(p=>p.id!=='00');
+assert.equal(phases.length,6);
+phases.forEach((phase,i)=>{
+  assert.equal(phase.id,String(i+1).padStart(2,'0'));
+  assert.ok(phase.en && phase.title && phase.deliverable);
+  assert.ok(issue.includes(phase.id+' · '+phase.title),'Issue form phase mismatch: '+phase.id);
+});
+assert.ok(index.includes('styles.css?v=ai-pcb-project-1'));
+assert.ok(index.includes('id="hero-primary">AI 기반 PCB'));
+assert.ok(css.includes('#project-title{font-size:clamp(36px,5.2vw,80px)'));
+assert.ok(!fs.existsSync('reports/weekly/2026-10/2026.10.21_14-57_(KST)_Min-Hwi_Kim_Weekly_Report.html'));
+process.stdout.write('AI_PCB_PROJECT_CONFIGURATION_PASS\n');

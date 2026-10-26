@@ -38,6 +38,7 @@ jobs:
           node --check site/app.js
           node tests/test_report_refresh.js
           node tests/test_summary_layout.js
+          node tests/test_ai_pcb_setup.js
           node --check site/config.js
           node --check site/deliverables.js
       - name: Export approved public Issues
@@ -81,7 +82,7 @@ jobs:
               'styles.css': 'font-size:18px',
               'theme.css': 'Urbanist',
               'app.js': 'projectEndExclusive',
-              'config.js': 'window.DASHBOARD_CONFIG',
+              'config.js': 'AI 기반 PCB 설계·검증·제작 자동화 연구',
               'data.js': 'github-issues',
               'report-data.js': 'window.DASHBOARD_REPORTS = ',
               'report-data.json': '"reports":',

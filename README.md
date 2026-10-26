@@ -1,59 +1,63 @@
-# Research Project Dashboard Template
+# AI 기반 PCB 설계·검증·제작 자동화 연구
 
-**연구 프로젝트마다 복제해서 사용하는 GitHub Pages 기반 공개 대시보드 템플릿**입니다.  
-GitHub Issues로 업무를 관리하고, 웹 대시보드에서 일정과 진행 현황을 읽기 전용으로 확인합니다.
+GitHub Issues를 연구 업무의 관리 원본으로 사용하고, GitHub Pages에서 일정·업무·Weekly Report를 공개하는 **연구용 대시보드**입니다. [Research Project Dashboard Template](https://github.com/sdsl-public/research-project-dashboard-template)를 기반으로 구성했습니다.
 
-이 저장소에는 기존 SkyWater 프로젝트의 실제 업무, 실험 결과, 작성 완료 보고서가 포함되지 않습니다.
+## 연구 목표
 
-## 포함된 기능
+AI 기반의 전자회로 및 PCB 설계 초안 생성에서 자동 검증, 제조 파일 생성·발주 연계, 실물 시제품 평가까지 연결하는 워크플로를 구축하고 성능과 재현성을 비교·평가합니다.
 
-- 6단계 연구 일정표: 전체 기간, 6개월, 3개월 보기
-- GitHub Issues 기반 업무·마일스톤·담당자·진행 상태·체크리스트
-- 타임라인, 업무 목록, 칸반 보드, 검색 및 필터
-- 업무 현황 3개 통계, 최근 업무 8개, 최근 Weekly Report 8개
-- A4 HTML Weekly Report 작성 및 저장, 읽기 전용 브라우저 열람
-- 월별 보고서 폴더 `reports/weekly/YYYY-MM/`
-- PC/모바일 반응형 디자인, 산출물 아이콘 6개
-- GitHub Actions 테스트·안전한 공개 데이터 추출·GitHub Pages 배포
+**아래 항목은 연구 계획이며 구현 완료나 서비스 제공을 의미하지 않습니다.**
 
-## 새 프로젝트 만들기
+## 연구 단계와 산출물
 
-1. 이 저장소의 **Settings → General → Template repository** 항목을 켭니다.
-2. **Use this template → Create a new repository**를 눌러 새 **Public** 저장소를 생성합니다.
-3. 새 저장소의 [`site/config.js`](site/config.js)를 편집합니다.
-   프로젝트명, 두 줄 제목, 부제, 연구실명, 저작권 연도, 시작/종료일, 6개 연구 단계 및 산출물을 설정합니다.
-4. 연구 단계 이름을 바꾼 경우 [Issue 양식](.github/ISSUE_TEMPLATE/task.yml)의 해당 드롭다운도 같은 이름으로 바꿉니다. **단계 ID 01~06은 유지**하세요.
-5. 새 저장소에서 **Issues**를 활성화하고 `dashboard` 라벨을 만든 다음, **프로젝트 업무** 양식으로 Issue를 등록합니다. `dashboard` 라벨이 붙은 업무만 현황판에 표시됩니다.
-6. **Settings → Pages → Build and deployment → Source: GitHub Actions**를 선택합니다.
-   **Actions → Publish public dashboard → Run workflow**로 첫 배포를 실행합니다.
+| 단계 | 주요 연구 내용 | 산출물 |
+|---|---|---|
+| 01 연구 기획·사양 정의 | 활용 사례, 입력 요구사항, 성능지표·평가 기준 | 요구사항 정의서·평가 지표 |
+| 02 AI 회로·부품 설계 | 자연어 사양→회로 후보, 부품 매칭, 회로도·BOM 생성 | 회로도·넷리스트·BOM 초안 |
+| 03 PCB 배치·배선 자동화 | PCB 외형, 레이어, 자동 배치·배선, 설계 제약 적용 | 배치·배선 설계 파일 |
+| 04 회로·레이아웃 검증 | ERC/DRC, 연결성, 간섭 및 필요 시 SI/PI 평가 | 자동 검증 결과·리뷰 기록 |
+| 05 제작 데이터·발주 연계 | Gerber/Drill, BOM, CPL, DFM, 견적·주문 연동 조사 | 제조 산출물 패키지 |
+| 06 시제품 평가·최적화 | 제작·실장, 전기적 시험, 결함 피드백, 결과 학습 | 테스트 데이터·개선 보고서 |
 
-기본 공개 주소는 `https://OWNER.github.io/REPOSITORY/`입니다. 표준 GitHub Pages 주소에서는 `site/config.js`가 새 저장소 경로를 자동 인식합니다. 사용자 지정 도메인은 설정 파일의 fallback 저장소 주소와 Actions 변수 `DASHBOARD_SITE_URL`을 지정하세요.
+연구 도구의 후보에는 KiCad, EasyEDA/OpenEDA 및 JLCPCB 호환 제조 데이터가 포함됩니다. 각 API·연동 가능성은 별도 검증 대상입니다.
 
-## Weekly Report
+## 초기 프로젝트 기간
 
-대시보드의 **리포트 생성**에서 A4 보고서를 작성하여 HTML로 다운로드하고,
-새 저장소의 `reports/weekly/YYYY-MM/`에 업로드합니다.
-배포 후 **최근 리포트 업데이트**에 최신 8건이 표시되며, 원본에서 스크립트와 편집 기능을 제거한 읽기 전용 HTML이 열립니다.
-보고서를 삭제하면 다음 Pages 배포 후 목록에서도 제거됩니다.
+**2026-11-01 ~ 2027-10-31** (임시 12개월)
 
-## 개발 및 검증
+연구 일정이 확정되면 `site/config.js`의 `projectStart`, `projectEnd`를 변경하세요. 실제 Github Issues의 날짜를 임의로 변경하지 않습니다.
 
-Python 3.11+와 Node.js 20+가 필요합니다.
+## 대시보드 운영
+
+1. 연구 업무를 **Issues → AI PCB 자동화 연구 업무**로 등록합니다.
+2. 관리자가 GitHub Issue에 `dashboard` 라벨을 지정하면 공개 대시보드에 표시됩니다.
+3. 자동 생성한 회로와 PCB 파일은 사람이 검토하고 별도 ERC/DRC 등의 검증 절차를 거칩니다.
+4. 제조 주문과 비용 발생 등의 외부 실행은 **담당자의 승인** 후 진행합니다.
+5. 연구 결과는 **리포트 생성** 기능으로 작성하고 `reports/weekly/YYYY-MM/`에 업로드합니다.
+
+## 대시보드 및 운영 설정
+
+- **연구 저장소:** https://github.com/sdsl-public/ai-pcb-design-automation
+- **GitHub Pages:** https://sdsl-public.github.io/ai-pcb-design-automation/
+- **프로젝트 설정:** `site/config.js`
+- **연구 업무 등록:** `Issues → AI PCB 자동화 연구 업무`
+- **Weekly Report:** 대시보드의 `리포트 생성`에서 작성 후 `reports/weekly/YYYY-MM/`에 HTML 업로드
+
+저장소 **Issues**를 활성화하고 `dashboard` 라벨을 만들어 공개해도 되는 Issue에 적용하세요.
+**Settings → Pages → Source: GitHub Actions**를 선택하면 `Publish public dashboard` 워크플로로 배포합니다.
+현재 기간은 **2026-11-01 ~ 2027-10-31**의 임시 계획이며 실제 연구 일정 확정 시 변경할 수 있습니다.
+
+## 안전 및 공개 범위
+
+이 저장소의 GitHub Pages·Issues·보고서 원본은 **공개**됩니다. 비공개 고객 도면, NDA 자료, 유료 설계 라이브러리, API 키·자격 증명, 미공개 연구 결과는 업로드하지 마세요. `dashboard` 라벨은 대시보드 노출만 제어하고 GitHub Issue의 공개 여부를 바꾸지 않습니다.
+
+## 로컬 테스트
 
 ```bash
 python3 -m unittest discover -s tests -v
 node --check site/app.js
 node tests/test_report_refresh.js
 node tests/test_summary_layout.js
-GITHUB_REPOSITORY=OWNER/REPOSITORY python3 scripts/build.py
-python3 -m http.server --directory _site 8000
+node tests/test_ai_pcb_setup.js
+GITHUB_REPOSITORY=sdsl-public/ai-pcb-design-automation python3 scripts/build.py
 ```
-
-## 공개 정보 주의
-
-**이 방식은 공개 저장소 및 공개 GitHub Pages를 전제로 합니다.**
-비공개 연구 결과, NDA 문서, 기업 PDK, 라이선스, 인증 정보, 미공개 회로도, 개인정보는 업로드하지 마세요.
-`dashboard` 라벨은 **대시보드 표시 여부만** 제어하며 Issue 원문을 비공개로 만들지 않습니다.
-업로드한 HTML 원본도 공개 저장소에서 누구나 볼 수 있습니다.
-
-자세한 보고서 안내는 [`reports/weekly/README.md`](reports/weekly/README.md)를 참조하세요.

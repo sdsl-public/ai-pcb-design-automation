@@ -16,4 +16,7 @@ jobs:
           python3 -m unittest discover -s tests -v
           node --check site/app.js
           node --check site/config.js
+          node tests/test_report_refresh.js
+          node tests/test_summary_layout.js
+          node tests/test_ai_pcb_setup.js
           python3 scripts/build.py
