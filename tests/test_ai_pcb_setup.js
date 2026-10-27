@@ -18,8 +18,21 @@ assert.equal(c.projectEnd,'2027-08-31');
 assert.equal(c.organizationShort,'SDSL');
 assert.equal(c.organization,'Semiconductor Device and System Laboratory');
 assert.equal(c.footerProjectEnglish,'AI PCB Design Automation');
-assert.equal(c.projectTeam.length,0);
-assert.equal(c.projectLinks.length,2);
+// Member and website lists are user-editable; validate structure, not fixed counts.
+assert.ok(Array.isArray(c.projectTeam));
+for (const member of c.projectTeam) {
+  assert.ok(member && typeof member.name === 'string' && member.name.trim());
+  assert.ok(typeof member.role === 'string' && member.role.trim());
+}
+assert.ok(Array.isArray(c.projectLinks));
+for (const link of c.projectLinks) {
+  assert.ok(link && typeof link.name === 'string' && link.name.trim());
+  assert.ok(typeof link.url === 'string');
+  const parsed = new URL(link.url);
+  assert.ok(['https:', 'http:'].includes(parsed.protocol));
+  assert.ok(parsed.hostname && !parsed.username && !parsed.password);
+  if (link.description !== undefined) assert.equal(typeof link.description, 'string');
+}
 assert.ok(index.includes('id="project-links-list"'));
 assert.ok(fs.readFileSync('site/app.js','utf8').includes('function renderProjectLinks()'));
 assert.ok(index.includes('id="project-team-button"'));
