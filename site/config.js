@@ -20,6 +20,12 @@
     copyrightYear: '2026',
     // Public team members: {name: 'Name', role: 'Role'}. Leave empty until confirmed.
     projectTeam: [],
+    // Public websites shown below the three dashboard update panels.
+    // Edit/add/remove {name, url, description (optional)} entries.
+    projectLinks: [
+      {name: 'Project Repository', url: 'https://github.com/sdsl-public/ai-pcb-design-automation', description: 'Source code and documentation'},
+      {name: 'Research Laboratory', url: 'https://sdsl.cau.ac.kr/', description: 'Semiconductor Device and System Laboratory'},
+    ],
     timezone: 'Asia/Seoul',
     projectStart: '2026-12-01',
     projectEnd: '2027-08-31',
