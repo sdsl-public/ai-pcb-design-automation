@@ -19,6 +19,9 @@ assert.equal(c.organizationShort,'SDSL');
 assert.equal(c.organization,'Semiconductor Device and System Laboratory');
 assert.equal(c.footerProjectEnglish,'AI PCB Design Automation');
 assert.equal(c.projectTeam.length,0);
+assert.equal(c.projectLinks.length,2);
+assert.ok(index.includes('id="project-links-list"'));
+assert.ok(fs.readFileSync('site/app.js','utf8').includes('function renderProjectLinks()'));
 assert.ok(index.includes('id="project-team-button"'));
 assert.ok(index.includes('id="project-team-dialog"'));
 assert.ok(index.includes('project-team.js?v=2'));
@@ -47,7 +50,7 @@ phases.forEach((phase,i)=>{
   assert.ok(phase.en && phase.title && phase.deliverable);
   assert.ok(issue.includes(phase.id+' · '+phase.title),'Issue form phase mismatch: '+phase.id);
 });
-assert.ok(index.includes('styles.css?v=team-quote-font-13'));
+assert.ok(index.includes('styles.css?v=project-links-1'));
 assert.ok(index.includes('id="hero-primary">AI 기반 PCB'));
 assert.ok(css.includes('#project-title{font-size:clamp(36px,5.2vw,80px)'));
 assert.ok(!fs.existsSync('reports/weekly/2026-10/2026.10.21_14-57_(KST)_Min-Hwi_Kim_Weekly_Report.html'));
