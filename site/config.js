@@ -19,7 +19,10 @@
     copyrightOrganization: 'Semiconductor Device and System Laboratory',
     copyrightYear: '2026',
     // Public team members: {name: 'Name', role: 'Role'}. Leave empty until confirmed.
-    projectTeam: [],
+    projectTeam: [
+       { name: 'Min-Hwi Kim', role: 'Project Manager' },
+       { name: 'Sangwoo Jung', role: 'Project Advisor' },
+    ],
     // Public websites shown below the three dashboard update panels.
     // Edit/add/remove {name, url, description (optional)} entries.
     projectLinks: [
