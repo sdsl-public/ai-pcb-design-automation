@@ -47,7 +47,7 @@ phases.forEach((phase,i)=>{
   assert.ok(phase.en && phase.title && phase.deliverable);
   assert.ok(issue.includes(phase.id+' · '+phase.title),'Issue form phase mismatch: '+phase.id);
 });
-assert.ok(index.includes('styles.css?v=team-member-icons-2'));
+assert.ok(index.includes('styles.css?v=team-quote-1'));
 assert.ok(index.includes('id="hero-primary">AI 기반 PCB'));
 assert.ok(css.includes('#project-title{font-size:clamp(36px,5.2vw,80px)'));
 assert.ok(!fs.existsSync('reports/weekly/2026-10/2026.10.21_14-57_(KST)_Min-Hwi_Kim_Weekly_Report.html'));
