@@ -35,6 +35,24 @@ AI 기반의 전자회로 및 PCB 설계 초안 생성에서 자동 검증, 제�
 4. 제조 주문과 비용 발생 등의 외부 실행은 **담당자의 승인** 후 진행합니다.
 5. 연구 결과는 **리포트 생성** 기능으로 작성하고 `reports/weekly/YYYY-MM/`에 업로드합니다.
 
+## 주요 웹사이트 링크 관리
+
+대시보드에서 **업무 현황 / 최근 업무 업데이트 / 최근 리포트 업데이트** 아래에
+**주요 웹사이트 (QUICK LINKS)** 바로가기 영역이 표시됩니다.
+GitHub의 `site/config.js`에서 `projectLinks` 목록을 직접 수정하세요.
+
+```javascript
+projectLinks: [
+  {name: 'Project Repository', url: 'https://github.com/sdsl-public/ai-pcb-design-automation', description: 'Source code and documentation'},
+  {name: 'Research Laboratory', url: 'https://sdsl.cau.ac.kr/', description: 'Semiconductor Device and System Laboratory'},
+],
+```
+
+`name`과 `url`은 필수, `description`은 선택입니다.
+항목을 추가·삭제하거나 순서를 바꾸면 화면에도 반영됩니다. 링크는 새 탭에서 열리며 HTTP(S) 주소만 허용합니다.
+`site/config.js`를 수정하고 커밋하면 GitHub Actions에서 자동 배포됩니다.
+공개 사이트이므로 비공개 URL이나 민감한 정보는 등록하지 마세요.
+
 ## 대시보드 및 운영 설정
 
 - **연구 저장소:** https://github.com/sdsl-public/ai-pcb-design-automation
